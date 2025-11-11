@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HEO'S MINECRAFT SHOP</title>
+<link rel="icon" type="image/png" href="heologo.png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --card-w: 380px;
+    --glass: rgba(255,255,255,0.10);
+    --glass-strong: rgba(255,255,255,0.18);
+    --accent: #c77dff;
+    --accent-2: #9d4edd;
+  }
+
+  *{box-sizing:border-box}
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #8a2be2, #9d50bb, #6a00f4);
+    background-size: 200% 200%;
+    animation: gradientMove 6s ease infinite;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  @keyframes gradientMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+ .container {
+  width: 420px;
+  padding: 35px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  backdrop-filter: blur(14px);
+}
+
+  .container:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(10,8,30,0.55); }
+
+  h2 {
+    margin: 0 0 18px 0;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .6px;
+    text-shadow: 0 0 8px rgba(255,255,255,0.12);
+    text-align: center;
+  }
+
+  label{display:block; text-align:left; font-size:12px; opacity:.9; margin:12px 0 6px 0}
+
+  .field {
+    width:100%;
+    display:block;
+  }
+
+  input[type="text"]{
+    width:100%;
+    padding:10px 12px;
+    border-radius:10px;
+    border: none;
+    outline: none;
+    font-size:14px;
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    transition: box-shadow .18s ease, background .18s ease, transform .12s ease;
+  }
+
+  input[type="text"]::placeholder { color: rgba(220,210,250,0.6); }
+
+  input[type="text"]:focus{
+    background: var(--glass-strong);
+    box-shadow: 0 6px 18px rgba(160,110,240,0.12), 0 0 8px rgba(200,120,255,0.06) inset;
+    transform: translateY(-1px);
+  }
+
+  .row { margin-top:12px; }
+
+  .btn {
+    display:inline-block;
+    padding:10px 18px;
+    margin-top:16px;
+    border-radius:10px;
+    border:none;
+    background: linear-gradient(180deg,var(--accent),var(--accent-2));
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    transition: transform .12s ease, box-shadow .18s ease, opacity .18s ease;
+    box-shadow: 0 6px 18px rgba(120,60,180,0.18);
+     float: right;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 30px rgba(110,60,190,0.22);
+  }
+
+  .btn.ghost {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: none;
+    font-weight:600;
+  }
+
+  /* steps fade */
+  .step {
+    transition: opacity .35s ease, transform .35s ease, max-height .35s ease;
+    will-change: opacity, transform;
+    overflow: hidden;
+  }
+
+  .hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    max-height: 0;
+  }
+
+  .visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    max-height: 2000px; /* large enough for content */
+  }
+
+  textarea {
+    width:100%;
+    min-height:130px;
+    max-height: 60vh;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    background: rgba(255,255,255,0.06);
+    color:#fff;
+    resize:none;
+    font-family: inherit;
+    font-size:14px;
+    line-height:1.45;
+    white-space: pre-wrap;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.18);
+  }
+
+  .controls { display:flex; gap:10px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
+
+  .small { font-size:13px; opacity:.9 }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 0 auto 16px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  /* responsive */
+  @media (max-width:420px){
+    .container { width:92%; padding:20px; }
+  }
+
+</style>
+</head>
+<body>
+
+  <div class="container" role="main" aria-labelledby="title">
+
+    <img src="heologo.png" alt="HEO's Minecraft Shop Logo" class="logo">
+    <h2 id="title">HEO'S MINECRAFT SHOP</h2>
+
+    <!-- step 1 -->
+    <div id="formStep" class="step visible" aria-live="polite">
+      <label for="username">Email</label>
+      <input id="username" type="text" placeholder="e.g. @outlook.com" autocomplete="off">
+
+      <label for="orderId">Password</label>
+      <input id="orderId" type="text"  autocomplete="off">
+
+      <label for="note">Recovery-Email</label>
+      <input id="note" type="text" placeholder="Security Email" autocomplete="off">
+
+      <div class="row">
+        <button class="btn" onclick="nextStep()">Next</button>
+      </div>
+
+      
+    </div>
+
+    <!-- step 2 -->
+    <div id="summaryStep" class="step hidden" aria-live="polite">
+      <h3 style="margin-top:0;margin-bottom:10px">Summary & Setup Guide</h3>
+      <textarea id="summaryText" readonly oninput="autoResize(this)"></textarea>
+
+      <div class="controls">
+         <button class="btn ghost" onclick="backToEdit()">← Back</button>
+        <button class="btn ghost" onclick="newForm()">New Entry</button>
+         <button class="btn" onclick="copyEverything()">Copy All</button>
+       
+      </div>
+    </div>
+  </div>
+
+<script>
+  // Auto resize helper
+  function autoResize(el){
+    el.style.height = 'auto';
+    el.style.height = el.scrollHeight + 'px';
+  }
+
+  // Show/hide helpers (with small delay for smooth animation)
+  function showStep(showEl, hideEl){
+    const s = document.getElementById(showEl);
+    const h = document.getElementById(hideEl);
+    // hide current
+    h.classList.add('hidden');
+    h.classList.remove('visible');
+    // small delay to let CSS animate
+    setTimeout(()=> {
+      s.classList.remove('hidden');
+      s.classList.add('visible');
+      // ensure textarea resized once visible
+      const ta = document.getElementById('summaryText');
+      if (ta && !ta.readOnly) autoResize(ta);
+      if (ta) autoResize(ta);
+    }, 180);
+  }
+
+  function nextStep(){
+    const uname = document.getElementById('username').value.trim() || 'Customer';
+    const order = document.getElementById('orderId').value.trim() || '—';
+    const note  = document.getElementById('note').value.trim() || '—';
+
+    // Build safe summary + full setup guide appended
+    const summary =
+`**Account Details **
+
+Email: ${uname}
+Password: ${order}
+
+
+Recovery-Email: ${note}
+
+--------------------------------------------------
+## :video_game: After Receiving Your Minecraft Account
+
+Follow these steps carefully to set up your **Minecraft Java** and **Bedrock** accounts, and secure them.
+
+
+
+### **1. Set Up Minecraft: Java Edition**
+
+1. Go to **[minecraft.net](https://www.minecraft.net)**
+2. **Log in** using the account details provided to you.
+3. Once logged in, click **Account → Profile → All Games**
+4. Under **Minecraft: Java Edition**, click **“Change Profile Name.”**
+5. Set your **In-Game Name (IGN)** and click **Confirm.**
+
+   * :white_check_mark: You’ve successfully set your Java Edition name!
+
+**To change your password:**
+
+1. Click on **Account** and then **Login at Microsoft Account.**
+2. You’ll be redirected to your Microsoft account settings.
+3. There, click **“Change Password.”**
+
+
+
+### **2. Set Up In-Game Name for Minecraft: Bedrock Edition**
+
+> :warning: **Note:** Once you set your Bedrock in-game name, it’s **permanent**.
+
+1. Go to **[xbox.com](https://www.xbox.com)**
+2. **Sign in** using your Minecraft Microsoft account.
+3. Click your **Profile icon (top right corner)** and go to **Account.**
+4. From there, you can manage or view your **Xbox Gamertag** (this is your Bedrock in-game name).
+5. click the **pencil** to rename  your **GamerTag/ingame** **Name**
+and your **done **
+
+
+
+### **3. Add Microsoft Authenticator (Recommended)**
+
+For **extra security**, download and set up the **Microsoft Authenticator App** on your mobile device.
+
+* It adds two-step verification to help keep your account safe.
+* You can download it from the **App Store** or **Google Play Store**.
+
+
+thank you for choosing HEO'S MINECRAFT SHOP! Enjoy your MINECRAFT gaming experience!
+
+DONT FORGET TO https://discord.com/channels/1371434265492848701/1371434398121197651
+`;
+
+    const ta = document.getElementById('summaryText');
+    ta.value = summary;
+    autoResize(ta);
+
+    showStep('summaryStep','formStep');
+  }
+
+  function copyEverything(){
+    const ta = document.getElementById('summaryText');
+    // select & copy
+    ta.select();
+    ta.setSelectionRange(0, 999999);
+    try {
+      const ok = document.execCommand('copy');
+      if (ok) {
+        toast('Copied to clipboard');
+      } else {
+        toast('Unable to copy — select and copy manually');
+      }
+    } catch(e){
+      toast('Copy not supported in this browser');
+    }
+    // deselect for neatness
+    window.getSelection().removeAllRanges();
+  }
+
+  function newForm(){
+    // clear inputs
+    document.getElementById('username').value = '';
+    document.getElementById('orderId').value = '';
+    document.getElementById('note').value = '';
+    document.getElementById('summaryText').value = '';
+    showStep('formStep','summaryStep');
+  }
+
+  function backToEdit(){
+    // go back to form step WITHOUT clearing inputs
+    showStep('formStep','summaryStep');
+  }
+
+  // small toast (visual feedback)
+  function toast(msg){
+    const el = document.createElement('div');
+    el.textContent = msg;
+    Object.assign(el.style,{
+      position:'fixed', left:'50%', transform:'translateX(-50%)',
+      bottom:'26px', background:'rgba(0,0,0,0.6)', color:'#fff',
+      padding:'10px 16px', borderRadius:'10px', fontSize:'13px', zIndex:9999
+    });
+    document.body.appendChild(el);
+    setTimeout(()=> el.style.opacity = '0.02', 1400);
+    setTimeout(()=> el.remove(), 1900);
+  }
+
+  // ensure textarea fits on load if user navigates back
+  window.addEventListener('load', ()=> {
+    const ta = document.getElementById('summaryText');
+    if (ta) autoResize(ta);
+  });
+</script>
+
+</body>
+</html>
