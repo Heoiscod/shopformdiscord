@@ -112,7 +112,7 @@
     font-weight:600;
   }
 
-  /* steps fade */
+  
   .step {
     transition: opacity .35s ease, transform .35s ease, max-height .35s ease;
     will-change: opacity, transform;
@@ -130,7 +130,7 @@
     opacity: 1;
     pointer-events: auto;
     transform: translateY(0);
-    max-height: 2000px; /* large enough for content */
+    max-height: 2000px; 
   }
 
   textarea {
@@ -163,7 +163,7 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
-  /* responsive */
+
   @media (max-width:420px){
     .container { width:92%; padding:20px; }
   }
@@ -177,7 +177,7 @@
     <img src="heologo.png" alt="HEO's Minecraft Shop Logo" class="logo">
     <h2 id="title">HEO'S MINECRAFT SHOP</h2>
 
-    <!-- step 1 -->
+
     <div id="formStep" class="step visible" aria-live="polite">
       <label for="username">Email</label>
       <input id="username" type="text" placeholder="e.g. @outlook.com" autocomplete="off">
@@ -195,7 +195,7 @@
       
     </div>
 
-    <!-- step 2 -->
+    
     <div id="summaryStep" class="step hidden" aria-live="polite">
       <h3 style="margin-top:0;margin-bottom:10px">Summary & Setup Guide</h3>
       <textarea id="summaryText" readonly oninput="autoResize(this)"></textarea>
@@ -210,24 +210,24 @@
   </div>
 
 <script>
-  // Auto resize helper
+  
   function autoResize(el){
     el.style.height = 'auto';
     el.style.height = el.scrollHeight + 'px';
   }
 
-  // Show/hide helpers (with small delay for smooth animation)
+ 
   function showStep(showEl, hideEl){
     const s = document.getElementById(showEl);
     const h = document.getElementById(hideEl);
-    // hide current
+  
     h.classList.add('hidden');
     h.classList.remove('visible');
-    // small delay to let CSS animate
+   
     setTimeout(()=> {
       s.classList.remove('hidden');
       s.classList.add('visible');
-      // ensure textarea resized once visible
+  
       const ta = document.getElementById('summaryText');
       if (ta && !ta.readOnly) autoResize(ta);
       if (ta) autoResize(ta);
@@ -239,7 +239,7 @@
     const order = document.getElementById('orderId').value.trim() || '—';
     const note  = document.getElementById('note').value.trim() || '—';
 
-    // Build safe summary + full setup guide appended
+    d
     const summary =
 `**Account Details **
 
@@ -249,7 +249,7 @@ Password: ${order}
 
 Recovery-Email: ${note}
 
---------------------------------------------------
+
 ## :video_game: After Receiving Your Minecraft Account
 
 Follow these steps carefully to set up your **Minecraft Java** and **Bedrock** accounts, and secure them.
@@ -336,11 +336,11 @@ DONT FORGET TO https://discord.com/channels/1371434265492848701/1371434398121197
   }
 
   function backToEdit(){
-    // go back to form step WITHOUT clearing inputs
+    
     showStep('formStep','summaryStep');
   }
 
-  // small toast (visual feedback)
+ 
   function toast(msg){
     const el = document.createElement('div');
     el.textContent = msg;
@@ -354,7 +354,7 @@ DONT FORGET TO https://discord.com/channels/1371434265492848701/1371434398121197
     setTimeout(()=> el.remove(), 1900);
   }
 
-  // ensure textarea fits on load if user navigates back
+ 
   window.addEventListener('load', ()=> {
     const ta = document.getElementById('summaryText');
     if (ta) autoResize(ta);
@@ -363,3 +363,4 @@ DONT FORGET TO https://discord.com/channels/1371434265492848701/1371434398121197
 
 </body>
 </html>
+
